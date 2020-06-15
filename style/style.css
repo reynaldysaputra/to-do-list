@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap');
+
+body {
+     padding: 0px;
+     margin: 0px;
+     background-color: #dfdfdf;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh !important;
+}
+
+main {
+     width: 28%;
+     height: 80vh;
+     background-color: white;
+     border-radius: 20px;
+     overflow: hidden;
+}
+
+main #header {
+     width: 100%;
+     height: 30%;
+     position: relative;
+     overflow: hidden;
+}
+
+main #header img{
+     width: 100%;
+}
+
+main #header aside {
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     top: 0;
+     display: grid;
+     grid-template-columns: 100%;
+     align-content:space-between;
+}
+
+main #header aside section{
+     width: 100%;
+     height: 50px;
+}
+
+main #header aside section:first-of-type{
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+}
+
+main #header aside section:first-of-type i{
+     color: white !important;
+     font-size: 1.7em;
+     margin-right: 5%;
+     cursor: pointer;
+}
+
+main #header aside section:last-of-type{
+     display: flex;
+     align-items: center;
+}
+
+main #header aside section:last-of-type p{
+     color: white;
+     font-size: 1.5em;
+     margin: 0px;
+     margin-left: 5%;
+     font-family:  sans-serif;
+}
+
+body #body {
+     width: 100%;
+     height: 70%;
+}
+
+body #body #bodyContent{
+     width: 100%;
+     height: 85%;
+     overflow: auto;
+}
+
+body #body #bodyContent ul{
+     list-style: none;
+     padding: 0px;
+     margin: 0px;
+}
+
+body #body #bodyContent ul li{
+     width: 100%;
+     border-bottom: 1px solid #eeeeee;
+     display: flex;
+     align-items: center;
+     justify-content: space-evenly;
+     padding: 15px;
+     box-sizing: border-box;
+}
+
+body #body #bodyContent ul li #sec1{
+     width: 80%;
+     display: flex;
+}
+
+body #body #bodyContent ul li #sec2{
+     width: 20%;
+     text-align: center;
+}
+
+body #body #bodyContent ul li #sec2 i{transition: 0.3s;}
+
+body #body #bodyContent ul li #sec2:hover{color: red;}
+
+body #body #bodyContent ul li i{
+     font-size: 1.5em;
+     cursor: pointer;
+}
+
+body #body #bodyContent ul li p{
+     margin: 0px;
+     font-size: 1.1em;
+     margin-left: 5%;
+     font-family: 'Noto Sans HK', sans-serif;
+     /* text-decoration: line-through;
+     color: #dfdfdf; */
+}
+
+body #body #footerContent{
+     width: 100%;
+     height: 15%;
+     display: flex;
+     align-items: center;
+     border-top: 1px solid #dfdfdf;
+}
+
+body #body #footerContent i{
+     font-size: 2.3em;
+     margin-left: 5%;
+     color: rgb(32, 115, 189);
+     cursor: pointer;
+}
+
+body #body #footerContent input{
+     width: 70%;
+     height: 3vh;
+     margin-left: 3%;
+     border: 0px;
+     padding: 8px;
+     font-size: 1.1em;
+}
+
+body #body #footerContent input::placeholder{
+     color: rgb(32, 115, 189);
+}

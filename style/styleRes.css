@@ -1,0 +1,20 @@
+@media only screen 
+     and (min-width : 200px)
+     and (max-width : 568px)
+     and (orientation : portrait){
+          main {
+               width: 90%;
+               height: 75%;
+          }
+}
+
+@media only screen 
+     and (min-width : 768px)
+     and (max-width : 1024px)
+     and (orientation : portrait){
+          main {
+               width: 45%;
+               height: 60%;
+          }
+
+}
