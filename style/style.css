@@ -158,3 +158,12 @@ body #body #footerContent input{
 body #body #footerContent input::placeholder{
      color: rgb(32, 115, 189);
 }
+
+.fa-check-circle {
+     color: green;
+}
+
+.croosText {
+     color: #dfdfdf;
+     text-decoration: line-through !important;
+}
