@@ -126,15 +126,9 @@ class AppEngine {
 
      completeToDo(dataNew, target){
           let data;
-
-          target.nextElementSibling.classList.toggle("croosText");
-          console.log(target.nextElementSibling);
           
-          // console.log(target.nextElementSibling.classList.contains('croosText'));
-
-          dataNew[target.nextElementSibling.dataset.number].strikethrough = (target.nextElementSibling.classList.length == 1) ? true : false;      
-          localStorage.setItem(cache_key, JSON.stringify(dataNew));
-                    
+          console.log(dataNew);
+          
      }
 }
 
