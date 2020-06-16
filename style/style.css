@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap');
 
+body.swal2-height-auto {
+     height: 100vh !important;
+}
+
 body {
      padding: 0px;
      margin: 0px;
@@ -9,6 +13,7 @@ body {
      justify-content: center;
      align-items: center;
      height: 100vh !important;
+     overflow: hidden;
 }
 
 main {
