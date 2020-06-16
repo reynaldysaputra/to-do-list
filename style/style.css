@@ -101,6 +101,7 @@ body #body #bodyContent ul li{
      justify-content: space-evenly;
      padding: 15px;
      box-sizing: border-box;
+     word-break: break-all;
 }
 
 body #body #bodyContent ul li #sec1{
@@ -127,8 +128,6 @@ body #body #bodyContent ul li p{
      font-size: 1.1em;
      margin-left: 5%;
      font-family: 'Noto Sans HK', sans-serif;
-     /* text-decoration: line-through;
-     color: #dfdfdf; */
 }
 
 body #body #footerContent{
