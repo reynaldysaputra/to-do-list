@@ -45,8 +45,8 @@ class App {
                     new AppEngine().deleteToDo(dataArry, target);
                     new ShowData().show();
                }else if(target.classList.contains('complete')){
-                    new AppEngine().completeToDo(dataArry,target);
-                    new ShowData().show(dataArry , text);
+                    new AppEngine().completeToDo(dataArry, target);
+                    new ShowData().show();
                }  
                
           })
@@ -66,7 +66,7 @@ class App {
 
      renderInput(inpt) {
           if(this.validateInput(inpt)) {  
-               new AppEngine().addToDo({text : inpt.value, delete : false, strikethrough : false});
+               new AppEngine().addToDo({text : inpt.value, delete : false, strikethrough : false, class : ''});
                inpt.value = '';
           }
      }
@@ -77,9 +77,9 @@ class ShowData {
           this.newData = newData;
      }
 
-     show(classText) {
+     show() {
           const validate = new ValidateLocalStorage();
-          let ul = document.querySelector('ul');
+          let ul = document.querySelector('ul');          
 
           if(validate) {
                dataArry = validate.validateLocal(this.newData);
@@ -92,7 +92,7 @@ class ShowData {
                               <li>
                                    <section id="sec1">
                                         <i class="${(data.strikethrough != true ? 'fa fa-circle-thin complete' : 'fas fa-check-circle complete')}" data-number = ${index}></i>
-                                        <p data-number = ${index}> ${data.text} </p>
+                                        <p data-number = ${index} class="${(data.strikethrough != true ? '' : `croosText`)}"> ${data.text} </p>
                                    </section>
                                    <section id="sec2">
                                         <i class="fa fa-trash-o hapus" data-number = ${index++}></i>
@@ -101,7 +101,7 @@ class ShowData {
                          `;
                     }
                })
-          }          
+          }                    
           return this;
      }
 }
@@ -125,10 +125,16 @@ class AppEngine {
      }
 
      completeToDo(dataNew, target){
-          let data;
+          target.classList.toggle('class');          
           
-          console.log(dataNew);
-          
+          console.log(target.nextElementSibling.classList);
+
+          dataNew[target.dataset.number].strikethrough = (target.nextElementSibling.classList.length == 0) ? true : false;
+          dataNew[target.dataset.number].class = (target.nextElementSibling.classList.length === 0) ?  'croosText' : '';
+          localStorage.setItem(cache_key, JSON.stringify(dataNew));
+          target.nextElementSibling.className = dataNew[target.dataset.number].class;
+               
+          return this;
      }
 }
 
@@ -155,17 +161,26 @@ class ValidateLocalStorage {
      }
 }
 
+const time = (element) => {
+     const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()];
+     const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][new Date().getMonth()];
+     const dayNumber = new Date().getDate();
+
+     element.innerHTML = `${dayName}, ${monthName} ${dayNumber}`;
+}
+
 window.addEventListener('DOMContentLoaded', function(target) {
      const imgHeader = document.querySelector('#header img');
      const text = document.querySelectorAll('#sec1 p');
-     let rdm = Math.floor(Math.random() * 3 + 1);
+     const element = document.querySelector('#time');
+     let rdm = Math.floor(Math.random() * 3 + 1);;
+
+     time(element);
 
      new App().render1();
-     new ShowData().show();
-     
+     new ShowData().show();     
      
      imgHeader.src = `img/bg${rdm}.jpg`
 })
 
-
-// <p data-number = ${index} class="${(data.strikethrough != true ? 'undifined' : `${classText}`)}"> ${data.text} </p>
+// <i class="${(data.strikethrough != true ? 'fa fa-circle-thin complete' : 'fas fa-check-circle complete')}" data-number = ${index}></i>
