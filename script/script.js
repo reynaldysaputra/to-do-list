@@ -46,6 +46,7 @@ class App {
                     new ShowData().show();
                }else if(target.classList.contains('complete')){
                     new AppEngine().completeToDo(dataArry, target);
+                    new ShowData().show();
                }  
                
           })
@@ -125,8 +126,11 @@ class AppEngine {
 
      completeToDo(dataNew, target){
           target.classList.toggle('class');          
-          dataNew[target.dataset.number].strikethrough = (target.classList.length === 4) ? true : false;
-          dataNew[target.dataset.number].class = (target.classList.length === 4) ?  'croosText' : '';
+          
+          console.log(target.nextElementSibling.classList);
+
+          dataNew[target.dataset.number].strikethrough = (target.nextElementSibling.classList.length == 0) ? true : false;
+          dataNew[target.dataset.number].class = (target.nextElementSibling.classList.length === 0) ?  'croosText' : '';
           localStorage.setItem(cache_key, JSON.stringify(dataNew));
           target.nextElementSibling.className = dataNew[target.dataset.number].class;
                
@@ -157,10 +161,21 @@ class ValidateLocalStorage {
      }
 }
 
+const time = (element) => {
+     const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()];
+     const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][new Date().getMonth()];
+     const dayNumber = new Date().getDate();
+
+     element.innerHTML = `${dayName}, ${monthName} ${dayNumber}`;
+}
+
 window.addEventListener('DOMContentLoaded', function(target) {
      const imgHeader = document.querySelector('#header img');
      const text = document.querySelectorAll('#sec1 p');
-     let rdm = Math.floor(Math.random() * 3 + 1);
+     const element = document.querySelector('#time');
+     let rdm = Math.floor(Math.random() * 3 + 1);;
+
+     time(element);
 
      new App().render1();
      new ShowData().show();     
