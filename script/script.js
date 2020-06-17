@@ -45,8 +45,7 @@ class App {
                     new AppEngine().deleteToDo(dataArry, target);
                     new ShowData().show();
                }else if(target.classList.contains('complete')){
-                    new AppEngine().completeToDo(dataArry,target);
-                    new ShowData().show(dataArry , text);
+                    new AppEngine().completeToDo(dataArry, target);
                }  
                
           })
@@ -66,7 +65,7 @@ class App {
 
      renderInput(inpt) {
           if(this.validateInput(inpt)) {  
-               new AppEngine().addToDo({text : inpt.value, delete : false, strikethrough : false});
+               new AppEngine().addToDo({text : inpt.value, delete : false, strikethrough : false, class : ''});
                inpt.value = '';
           }
      }
@@ -77,9 +76,9 @@ class ShowData {
           this.newData = newData;
      }
 
-     show(classText) {
+     show() {
           const validate = new ValidateLocalStorage();
-          let ul = document.querySelector('ul');
+          let ul = document.querySelector('ul');          
 
           if(validate) {
                dataArry = validate.validateLocal(this.newData);
@@ -91,8 +90,8 @@ class ShowData {
                          ul.innerHTML += `
                               <li>
                                    <section id="sec1">
-                                        <i class="${(data.strikethrough != true ? 'fa fa-circle-thin complete' : 'fas fa-check-circle complete')}" data-number = ${index}></i>
-                                        <p data-number = ${index}> ${data.text} </p>
+                                        <i class="fa fa-circle-thin complete" data-number = ${index}></i>
+                                        <p data-number = ${index} class="${(data.strikethrough != true ? '' : `croosText`)}"> ${data.text} </p>
                                    </section>
                                    <section id="sec2">
                                         <i class="fa fa-trash-o hapus" data-number = ${index++}></i>
@@ -101,7 +100,7 @@ class ShowData {
                          `;
                     }
                })
-          }          
+          }                    
           return this;
      }
 }
@@ -125,10 +124,13 @@ class AppEngine {
      }
 
      completeToDo(dataNew, target){
-          let data;
-          
-          console.log(dataNew);
-          
+          target.classList.toggle('class');          
+          dataNew[target.dataset.number].strikethrough = (target.classList.length === 4) ? true : false;
+          dataNew[target.dataset.number].class = (target.classList.length === 4) ?  'croosText' : '';
+          localStorage.setItem(cache_key, JSON.stringify(dataNew));
+          target.nextElementSibling.className = dataNew[target.dataset.number].class;
+               
+          return this;
      }
 }
 
@@ -161,11 +163,9 @@ window.addEventListener('DOMContentLoaded', function(target) {
      let rdm = Math.floor(Math.random() * 3 + 1);
 
      new App().render1();
-     new ShowData().show();
-     
+     new ShowData().show();     
      
      imgHeader.src = `img/bg${rdm}.jpg`
 })
 
-
-// <p data-number = ${index} class="${(data.strikethrough != true ? 'undifined' : `${classText}`)}"> ${data.text} </p>
+// <i class="${(data.strikethrough != true ? 'fa fa-circle-thin complete' : 'fas fa-check-circle complete')}" data-number = ${index}></i>
