@@ -90,7 +90,7 @@ class ShowData {
                          ul.innerHTML += `
                               <li>
                                    <section id="sec1">
-                                        <i class="fa fa-circle-thin complete" data-number = ${index}></i>
+                                        <i class="${(data.strikethrough != true ? 'fa fa-circle-thin complete' : 'fas fa-check-circle complete')}" data-number = ${index}></i>
                                         <p data-number = ${index} class="${(data.strikethrough != true ? '' : `croosText`)}"> ${data.text} </p>
                                    </section>
                                    <section id="sec2">
